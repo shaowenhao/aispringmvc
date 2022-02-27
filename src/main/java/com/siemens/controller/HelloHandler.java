@@ -1,9 +1,12 @@
-package com.siemens;
+package com.siemens.controller;
 
+import com.siemens.entity.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import javax.xml.transform.Source;
 
 /**
  * Description:
@@ -49,4 +52,13 @@ public class HelloHandler {
         return "index";
     }
 
+    //Spring MVC会根据请求参数名和JavaBean属性名进行自动匹配，自动为对象填充属性，同时
+    //级联属性
+    //访问 http://localhost:8080/register.jsp 提交表单跳转到hello world,终端打印 User(id=11, name=wenshao)
+   //添加Address到User User(id=12, name=xiaodan, address=Address(value=fengtai))
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    public String save(User user){
+        System.out.println(user);
+        return "index";
+    }
 }
