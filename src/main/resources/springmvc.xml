@@ -3,6 +3,17 @@
 http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
 http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
 
+    //解决@responseBody 中文乱码
+    <mvc:annotation-driven>
+        <!--消息转换器-->
+         <mvc:message-converters>
+             <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                 <property name="supportedMediaTypes" value="text/html;charset=UTF-8">
+                 </property>
+             </bean>
+         </mvc:message-converters>
+    </mvc:annotation-driven>
+
     <!-- 自动扫描 -->
     <context:component-scan base-package="com.siemens"></context:component-scan>
 
